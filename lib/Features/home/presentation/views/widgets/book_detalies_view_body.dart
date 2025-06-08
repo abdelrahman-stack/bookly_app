@@ -1,57 +1,31 @@
-import 'package:bookly_app/Features/home/presentation/views/widgets/book_rating.dart';
-import 'package:bookly_app/Features/home/presentation/views/widgets/books_action.dart';
+import 'package:bookly_app/Features/home/presentation/views/widgets/books_details_section.dart';
 import 'package:bookly_app/Features/home/presentation/views/widgets/custom_book_details_view_app_bar.dart';
-import 'package:bookly_app/Features/home/presentation/views/widgets/custom_book_item.dart';
-import 'package:bookly_app/Features/home/presentation/views/widgets/similar_books_item.dart';
-import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/Features/home/presentation/views/widgets/similar_books_section.dart';
 import 'package:flutter/material.dart';
 
 class BookDetaliesViewBody extends StatelessWidget {
   const BookDetaliesViewBody({super.key});
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: Column(
-        children: [
-          const CustomBookDetailsViewAppBar(),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: width * .2),
-            child: const CustomBookItem(),
-          ),
-          const SizedBox(height: 43),
-          Text(
-            'The Jungle Book',
-            style: Styles.textstyle30.copyWith(fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 6),
-          Opacity(
-            opacity: 0.7,
-            child: Text(
-              'Rudyard Kipling',
-              style: Styles.textstyle18.copyWith(fontStyle: FontStyle.italic),
+    return const CustomScrollView(
+      slivers: [
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30),
+            child: Column(
+              children: [
+                CustomBookDetailsViewAppBar(),
+                BooksDetailsSection(),
+                SizedBox(height: 49),
+
+                SimilarBooksSection(),
+                SizedBox(height: 40),
+              ],
             ),
           ),
-          const SizedBox(height: 16),
-
-          const BookRating(mainAxisAlignment: MainAxisAlignment.center),
-          const SizedBox(height: 37),
-
-          const BooksAction(),
-          const SizedBox(height: 49),
-
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text('You can also like', style: Styles.textstyle16.copyWith(
-              fontWeight: FontWeight.w900
-            ),),
-          ),
-                    const SizedBox(height: 16),
-                    const SimilarBooksItem(),
-
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
